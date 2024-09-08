@@ -16,15 +16,11 @@ public class TennisGame2 implements TennisGame {
     public String getScore() {
         String score = "";
 
-        if (P1point > 0) {
-            if (P2point == 0) {
-                P1res = titleByScore(P1point);
-                P2res = "Love";
-                score = P1res + "-" + P2res;
-            }
-        }
-
         if (P1point > P2point) {
+            if (P2point == 0) {
+                P1res = titleByScoreWhenOneScoreIsZero(P1point);
+                P2res = "Love";
+            }
             if (P1point < 4) {
                 if (P1point == 2)
                     P1res = "Thirty";
@@ -36,15 +32,12 @@ public class TennisGame2 implements TennisGame {
                     P2res = "Thirty";
                 score = P1res + "-" + P2res;
             }
-            if (P2point >= 3) {
+            if (P1point >= 4) {
                 score = "Advantage player1";
-            }
-        }
-
-        if (P1point >= 4) {
-            if (P2point >= 0) {
-                if ((P1point - P2point) >= 2) {
-                    score = "Win for player1";
+                if (P2point >= 0) {
+                    if ((P1point - P2point) >= 2) {
+                        score = "Win for player1";
+                    }
                 }
             }
         }
@@ -64,16 +57,11 @@ public class TennisGame2 implements TennisGame {
             }
         }
 
-
-        if (P2point > 0) {
-            if (P1point == 0) {
-                P2res = titleByScore(P2point);
-                P1res = "Love";
-                score = P1res + "-" + P2res;
-            }
-        }
-
         if (P2point > P1point) {
+            if (P1point == 0) {
+                P2res = titleByScoreWhenOneScoreIsZero(P2point);
+                P1res = "Love";
+            }
             if (P2point < 4) {
                 if (P2point == 2)
                     P2res = "Thirty";
@@ -84,23 +72,20 @@ public class TennisGame2 implements TennisGame {
                 if (P1point == 2)
                     P1res = "Thirty";
                 score = P1res + "-" + P2res;
-            }
-            if (P1point >= 3) {
+            } if (P2point >= 4) {
                 score = "Advantage player2";
-            }
-        }
-
-        if (P2point >= 4) {
-            if (P1point >= 0) {
-                if ((P2point - P1point) >= 2) {
-                    score = "Win for player2";
+                if (P1point >= 0) {
+                    if ((P2point - P1point) >= 2) {
+                        score = "Win for player2";
+                    }
                 }
             }
         }
+
         return score;
     }
 
-    private String titleByScore(int score) {
+    private String titleByScoreWhenOneScoreIsZero(int score) {
         return switch (score) {
             case 1 -> "Fifteen";
             case 2 -> "Thirty";
