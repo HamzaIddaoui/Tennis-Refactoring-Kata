@@ -43,9 +43,36 @@ public class TennisGame2 implements TennisGame
                     P2res = "Thirty";
                 score = P1res + "-" + P2res;
             }
+            if (P2point >= 3) {
+                score = "Advantage player1";
+            }
         }
 
-        if (P2point > 0)
+        if (P1point >= 4){
+            if (P2point >= 0) {
+                if ((P1point - P2point) >= 2) {
+                    score = "Win for player1";
+                }
+            }
+        }
+
+        if (P1point == P2point){
+            if (P1point < 4) {
+                if (P1point == 0)
+                    score = "Love";
+                if (P1point == 1)
+                    score = "Fifteen";
+                if (P1point == 2)
+                    score = "Thirty";
+                score += "-All";
+            }
+            if (P1point >= 3) {
+                score = "Deuce";
+            }
+        }
+
+
+        if (P2point > 0){
             if (P1point == 0) {
                 if (P2point == 1) {
                     P2res = "Fifteen";
@@ -60,6 +87,7 @@ public class TennisGame2 implements TennisGame
                 P1res = "Love";
                 score = P1res + "-" + P2res;
             }
+        }
 
         if (P2point > P1point){
             if (P2point < 4) {
@@ -73,44 +101,11 @@ public class TennisGame2 implements TennisGame
                     P1res = "Thirty";
                 score = P1res + "-" + P2res;
             }
-        }
-
-        if (P1point == P2point){
-            if (P1point < 4) {
-                if (P1point == 0)
-                    score = "Love";
-                if (P1point == 1)
-                    score = "Fifteen";
-                if (P1point == 2)
-                    score = "Thirty";
-                score += "-All";
-            }
-        }
-        if (P1point == P2point){
-            if (P1point >= 3) {
-                score = "Deuce";
-            }
-        }
-
-        if (P1point > P2point){
-            if (P2point >= 3) {
-                score = "Advantage player1";
-            }
-        }
-
-        if (P2point > P1point){
             if (P1point >= 3) {
                 score = "Advantage player2";
             }
         }
 
-        if (P1point >= 4){
-            if (P2point >= 0) {
-                if ((P1point - P2point) >= 2) {
-                    score = "Win for player1";
-                }
-            }
-        }
         if (P2point >= 4){
             if (P1point >= 0) {
                 if ((P2point - P1point) >= 2) {
