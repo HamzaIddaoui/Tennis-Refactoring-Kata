@@ -19,18 +19,12 @@ public class TennisGame2 implements TennisGame {
         switch (GameState.forScores(P1point, P2point)){
             case PLAYER1_WITH_HIGHER_SCORE -> {
                 if (P2point == 0) {
-                    P1res = titleByScoreWhenOneScoreIsZero(P1point);
+                    P1res = titleByScore(P1point);
                     P2res = "Love";
                 }
                 if (P1point < 4) {
-                    if (P1point == 2)
-                        P1res = "Thirty";
-                    if (P1point == 3)
-                        P1res = "Forty";
-                    if (P2point == 1)
-                        P2res = "Fifteen";
-                    if (P2point == 2)
-                        P2res = "Thirty";
+                    P1res = titleByScore(P1point);
+                    P2res = titleByScore(P2point);
                     score = P1res + "-" + P2res;
                 }
                 if (P1point >= 4) {
@@ -45,18 +39,12 @@ public class TennisGame2 implements TennisGame {
 
             case PLAYER2_WITH_HIGHER_SCORE -> {
                 if (P1point == 0) {
-                    P2res = titleByScoreWhenOneScoreIsZero(P2point);
+                    P2res = titleByScore(P2point);
                     P1res = "Love";
                 }
                 if (P2point < 4) {
-                    if (P2point == 2)
-                        P2res = "Thirty";
-                    if (P2point == 3)
-                        P2res = "Forty";
-                    if (P1point == 1)
-                        P1res = "Fifteen";
-                    if (P1point == 2)
-                        P1res = "Thirty";
+                    P2res = titleByScore(P2point);
+                    P1res = titleByScore(P1point);
                     score = P1res + "-" + P2res;
                 }
                 if (P2point >= 4) {
@@ -71,12 +59,7 @@ public class TennisGame2 implements TennisGame {
 
             case PLAYERS_WITH_SAME_SCORE -> {
                 if (P1point < 4) {
-                    if (P1point == 0)
-                        score = "Love";
-                    if (P1point == 1)
-                        score = "Fifteen";
-                    if (P1point == 2)
-                        score = "Thirty";
+                    score = titleByScore(P1point);
                     score += "-All";
                 }
                 if (P1point >= 3) {
@@ -87,8 +70,9 @@ public class TennisGame2 implements TennisGame {
         return score;
     }
 
-    private String titleByScoreWhenOneScoreIsZero(int score) {
+    private String titleByScore(int score) {
         return switch (score) {
+            case 0 -> "Love";
             case 1 -> "Fifteen";
             case 2 -> "Thirty";
             case 3 -> "Forty";
